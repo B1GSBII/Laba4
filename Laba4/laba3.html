@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="task-container">
+        <h2>Завдання №1. Виведення поточної дати та часу</h2>
+        <button onclick="displayCurrentDateTime()">Виконати</button>
+        <div id="currentDateResult" class="result">
+            </div>
+    </div>
+    <div class="task-container">
+        <h2>Завдання №2. Виведення дня тижня</h2>
+        <button onclick="displayDayOfWeek()">Виконати</button>
+        <div id="dayOfWeekResult" class="result">
+            </div>
+    </div>
+    <div class="task-container">
+        <h2>Завдання №3. Дата N днів тому</h2>
+        <label for="daysAgoInput">Введіть кількість днів (N): </label>
+        <input type="number" id="daysAgoInput" value="1"> <button onclick="displayDateAgo()">Обчислити</button>
+        <div id="dateAgoResult" class="result">
+            </div>
+    </div>
+    <div class="task-container">
+        <h2>Завдання №4. Останній день місяця</h2>
+        <label for="yearInput4">Рік: </label>
+        <input type="number" id="yearInput4" value="2024">
+        <label for="monthInput4">Місяць (1-12): </label>
+        <input type="number" id="monthInput4" min="1" max="12" value="2">
+        <button onclick="displayLastDayOfMonth()">Визначити</button>
+        <div id="lastDayResult" class="result">
+            </div>
+    </div>
+
+    <div class="task-container">
+        <h2>Завдання №5. Секунди від/до півночі</h2>
+        <button onclick="displaySecondsToday()">Обчислити</button>
+        <div id="secondsTodayResult" class="result">
+            </div>
+    </div>
+
+     <div class="task-container">
+        <h2>Завдання №6. Формат ДД.ММ.РРРР</h2>
+        <label for="dateInput6">Дата (напр., 2024-04-08): </label>
+        <input type="date" id="dateInput6" value=""> <button onclick="displayFormattedDateDDMMYYYY()">Форматувати</button>
+        <div id="formatDDMMYYYYResult" class="result">
+            </div>
+        <script>
+            // Встановити поточну дату в поле вводу №6 при завантаженні
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0'); // Місяці 0-11 -> 1-12
+                const day = String(today.getDate()).padStart(2, '0');
+                document.getElementById('dateInput6').value = `${year}-${month}-${day}`;
+            });
+        </script>
+    </div>
+
+    <div class="task-container">
+        <h2>Завдання №7. Різниця між датами</h2>
+        <label for="date1Input7">Дата 1: </label>
+        <input type="date" id="date1Input7" value="2024-04-01">
+        <label for="date2Input7">Дата 2: </label>
+        <input type="date" id="date2Input7" value="2024-04-08">
+        <button onclick="displayDateDifference()">Знайти різницю (в днях)</button>
+        <div id="dateDiffResult" class="result">
+            </div>
+    </div>
+
+     <div class="task-container">
+        <h2>Завдання №8. Відносне форматування дати</h2>
+         <label for="dateInput8">Оберіть дату та час: </label>
+         <input type="datetime-local" id="dateInput8" value="">
+        <button onclick="displayRelativeFormat()">Форматувати відносно зараз</button>
+        <div id="relativeFormatResult" class="result">
+            </div>
+         <script>
+            // Встановити поточну дату/час в поле вводу №8 при завантаженні
+            document.addEventListener('DOMContentLoaded', (event) => {
+                 // Форматуємо поточну дату/час для datetime-local (YYYY-MM-DDTHH:mm)
+                 const now = new Date();
+                 now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); // Коригуємо на часовий пояс
+                 document.getElementById('dateInput8').value = now.toISOString().slice(0, 16);
+            });
+        </script>
+    </div>
+
+    <div class="task-container">
+        <h2>Завдання №9. Розбір рядка дати</h2>
+        <label for="dateStringInput9">Введіть дату: </label>
+        <input type="text" id="dateStringInput9" placeholder="Напр., 08.04.2024 або 2024-04-08">
+         <p><small>Підтримувані формати: ДД.ММ.РРРР, РРРР-ММ-ДД, ММ/ДД/РРРР, <br>також формати, що розпізнає `new Date()` (напр., "April 8, 2024").</small></p>
+        <button onclick="displayParsedDate()">Розпізнати дату</button>
+        <div id="parseDateResult" class="result">
+            </div>
+    </div>
+
+    <div class="task-container">
+        <h2>Завдання №10. Локалізований формат дати</h2>
+        <label for="langCodeInput10">Код мови (uk, en, pl, de): </label>
+        <input type="text" id="langCodeInput10" value="uk" placeholder="uk">
+        <button onclick="displayLocalizedDate()">Форматувати</button>
+        <div id="localizedDateResult" class="result">
+            </div>
+    </div>
+
+    <script src="lab3_lib.js"></script>
+    <script src="lab3.js"></script>
+
+</body>
+</html>
